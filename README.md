@@ -33,12 +33,13 @@ Glowify is designed to provide an easy and seamless shopping experience for beau
 
 &nbsp;
 ## 🎥 Demo
+
 - Glowify User Walkthrough
 
-<table> <tr> <td width="65%"> <video src="https://github.com/user-attachments/assets/7c17a36d-0b19-40f3-ae1d-c4cad67590e4" controls width="100%"></video> </td> <td width="35%"> Glowify allows users to: - 🛍 Browse products by category. - 🔍 Search for beauty essentials. - 🛒 Add products to cart and checkout. - 💖 Save favorite items. - 👤 Manage user profiles and order history. - 🛠 Admin dashboard for product & order management. </td> </tr> </table>
+<table> <tr> <td width="65%"> <video src="https://github.com/user-attachments/assets/7c17a36d-0b19-40f3-ae1d-c4cad67590e4" controls width="100%"></video> </td> <td width="35%"> Glowify allows users to: 🛍 Browsing products by category, 🔍 Searching for beauty essentials, 🛒 Adding products to cart and completing checkout, 💖 Saving favorite items to wishlist, 👤 Managing profile and viewing order history  </td> </tr> </table>
 
 - Admin Panel Demo
-<table> <tr> <td width="65%"> <video src="https://github.com/user-attachments/assets/7c17a36d-0b19-40f3-ae1d-c4cad67590e4" controls width="100%"></video> </td> <td width="35%"> Glowify allows users to: - 🛍 Browse products by category. - 🔍 Search for beauty essentials. - 🛒 Add products to cart and checkout. - 💖 Save favorite items. - 👤 Manage user profiles and order history. - 🛠 Admin dashboard for product & order management. </td> </tr> </table>
+<table> <tr> <td width="65%"> <video src="https://github.com/user-attachments/assets/db0aac0b-bcad-4eee-9422-a65d42edf1f7" controls width="100%"></video> </td> <td width="35%"> The admin demo showcases: 🛠 Managing product categories and listings, ✏️ Adding, editing, and deleting products, 📦 Viewing and processing customer orders, 🔍 Searching and filtering orders, 👤 Managing registered users  </td> </tr> </table>
 &nbsp;
 
 *Note: The watermark in the video is from Clideo.com, as I used their free tool to compress the video.*
@@ -46,19 +47,25 @@ Glowify is designed to provide an easy and seamless shopping experience for beau
 ## 📸 Screenshots
 
 ### 🏠 Homepage
-![Homepage](https://your-image-url.com/homepage.png)
+<img alt="Homepage" src="https://github.com/user-attachments/assets/d7f0fff5-9377-4de0-8c80-6be71a2cebab" width="400">
 
 ### 🛍️ Product Listing
-![Product Listing](https://your-image-url.com/product-list.png)
+<img alt="ProductListing" src="https://github.com/user-attachments/assets/0828b9a2-0ee2-4bbb-b548-e8bf8e37387b" width="400">
 
-### 📖 Product Detail Page
-![Product Detail](https://your-image-url.com/product-detail.png)
+### 📖 Product Detail
+<img alt="ProductDetail" src="https://github.com/user-attachments/assets/aeca9d33-65ec-4392-b985-4275c4eb42d4" width="400">
 
 ### 🛒 Shopping Cart
-![Shopping Cart](https://your-image-url.com/cart.png)
+<img alt="ShoppingCart" src="https://github.com/user-attachments/assets/b8e28f87-5410-4acc-9931-82ecad08274b" width="400">
+
+### ❤️ Wishlist
+<img alt="Wishlist" src="https://github.com/user-attachments/assets/d0394388-f2b2-42c7-830d-c11306c36e37" width="400">
+
+### 📦 Order details
+<img alt="Orders" src="https://github.com/user-attachments/assets/44e3e0f3-13ba-43c5-a616-8d16e36a1fcc" width="400">
 
 ### 🎮 Admin Dashboard
-![Admin Dashboard](https://your-image-url.com/admin-dashboard.png)
+<img alt="Admin-Dashboard" src="https://github.com/user-attachments/assets/4f0700db-097e-481a-8046-d15c2ac6c0ca" width="400">
 
 &nbsp;
 
