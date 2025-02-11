@@ -36,7 +36,7 @@ Glowify is designed to provide an easy and seamless shopping experience for beau
 
 - Glowify User Walkthrough
 
-<table> <tr> <td width="65%"> <video src="https://github.com/user-attachments/assets/7c17a36d-0b19-40f3-ae1d-c4cad67590e4" controls width="100%"></video> </td> <td width="35%"> Glowify allows users to: 🛍 Browsing products by category, 🔍 Searching for beauty essentials, 🛒 Adding products to cart and completing checkout, 💖 Saving favorite items to wishlist, 👤 Managing profile and viewing order history  </td> </tr> </table>
+<table><tr> <td width="65%"> <video src="https://github.com/user-attachments/assets/7c17a36d-0b19-40f3-ae1d-c4cad67590e4" controls width="100%"></video> </td> <td width="35%"> Glowify allows users to: 🛍 Browsing products by category, 🔍 Searching for beauty essentials, 🛒 Adding products to cart and completing checkout, 💖 Saving favorite items to wishlist, 👤 Managing profile and viewing order history  </td> </tr> </table>
 
 - Admin Panel Demo
 <table> <tr> <td width="65%"> <video src="https://github.com/user-attachments/assets/db0aac0b-bcad-4eee-9422-a65d42edf1f7" controls width="100%"></video> </td> <td width="35%"> The admin demo showcases: 🛠 Managing product categories and listings, ✏️ Adding, editing, and deleting products, 📦 Viewing and processing customer orders, 🔍 Searching and filtering orders, 👤 Managing registered users  </td> </tr> </table>
@@ -71,6 +71,6 @@ Glowify is designed to provide an easy and seamless shopping experience for beau
 
 ## 📞 Contact
 
-If you have any doubt or want to contribute feel free to email me or hit me up on [Linkedin](https://linkedin.com/in/prajakta-kolhe08).
+If you have any questions or would like to contribute, feel free to email me or connect with me on [Linkedin](https://linkedin.com/in/prajakta-kolhe08).
 
 ⭐ **If you like this project, don't forget to give it a star!** ⭐
