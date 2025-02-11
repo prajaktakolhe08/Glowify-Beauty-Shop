@@ -1,6 +1,9 @@
 # 🌸 GLOWIFY - Beauty Products Shopping Website
 
-![demo](https://www.youtube.com/watch?v=_Uv6LcRaPJU)
+
+
+<video src="https://github.com/user-attachments/assets/db0aac0b-bcad-4eee-9422-a65d42edf1f7" controls></video>
+<video src="https://github.com/user-attachments/assets/7c17a36d-0b19-40f3-ae1d-c4cad67590e4.mb4" controls></video>
 
 Welcome to **Glowify** – a feature-rich shopping website for beauty products, built using **Flask, Python, HTML, CSS, JavaScript, Bootstrap, and MySQL**. Glowify is designed to provide users with a seamless shopping experience, similar to other popular beauty shopping websites like **Nykaa**.
 
@@ -104,4 +107,3 @@ Contributions are welcome! If you'd like to improve **Glowify**, feel free to fo
 ---
 
 ⭐ **If you like this project, don't forget to give it a star!** ⭐
-
