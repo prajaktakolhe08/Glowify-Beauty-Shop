@@ -1,6 +1,6 @@
 # 🌸 GLOWIFY - Beauty Products Shopping Website
 
-![Glowify Banner](https://your-image-url.com)
+![demo](https://www.youtube.com/watch?v=_Uv6LcRaPJU)
 
 Welcome to **Glowify** – a feature-rich shopping website for beauty products, built using **Flask, Python, HTML, CSS, JavaScript, Bootstrap, and MySQL**. Glowify is designed to provide users with a seamless shopping experience, similar to other popular beauty shopping websites like **Nykaa**.
 
