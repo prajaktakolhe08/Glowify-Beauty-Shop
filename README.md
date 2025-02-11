@@ -22,7 +22,7 @@ Glowify is designed to provide an easy and seamless shopping experience for beau
 - 🎨 **Responsive Design with Bootstrap**  
 - ⚡ **Optimized & Fast Performance**   
 
-## 🛠️ Tech Stack  
+## 🛠️ Built With
 <br>
 
 | Category   | Technologies |
