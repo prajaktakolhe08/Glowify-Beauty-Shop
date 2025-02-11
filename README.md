@@ -1,77 +1,47 @@
 # 🌸 GLOWIFY - Beauty Products Shopping Website
 
+Glowify is designed to provide an easy and seamless shopping experience for beauty lovers. Inspired by leading platforms like Nykaa and Sephora, it brings an intuitive user-friendly interface to browse, explore, and purchase beauty products effortlessly. The project was built using Flask, MySQL, and Bootstrap, ensuring a smooth and dynamic experience.
+&nbsp;
+## ✨ Features  
 
+📌 **User Experience:**  
+- 👤 **User Authentication** (Sign Up, Login, Profile Management)  
+- 🏷️ **Product Categories** (Makeup, Skincare, Haircare, Fragrances, etc.)  
+- 🛍️ **Product Listing & Detailed Pages**  
+- ❤️ **Wishlist & Favorite Feature**   
 
-<video src="https://github.com/user-attachments/assets/db0aac0b-bcad-4eee-9422-a65d42edf1f7" controls></video>
-<video src="https://github.com/user-attachments/assets/7c17a36d-0b19-40f3-ae1d-c4cad67590e4.mb4" controls></video>
+📌 **Shopping & Orders:**  
+- 🛒 **Shopping Cart & Checkout Process**  
+- 📦 **Order Management & Tracking**  
 
-Welcome to **Glowify** – a feature-rich shopping website for beauty products, built using **Flask, Python, HTML, CSS, JavaScript, Bootstrap, and MySQL**. Glowify is designed to provide users with a seamless shopping experience, similar to other popular beauty shopping websites like **Nykaa**.
+📌 **Admin Panel:**  
+- 📊 **Admin Dashboard for Managing Products & Orders**  
+- 🖼️ **Categories and User Management**  
 
----
+📌 **Technology & Design:**  
+- 🎨 **Responsive Design with Bootstrap**  
+- ⚡ **Optimized & Fast Performance**   
 
-## ✨ Features
+## 🛠️ Tech Stack  
+<br>
 
-✅ User Authentication (Sign Up, Login, Profile Management)  
-✅ Product Categories (Makeup, Skincare, Haircare, Fragrances, etc.)  
-✅ Product Listing & Detail Pages  
-✅ Shopping Cart & Checkout Process  
-✅ Order Management  
-✅ Admin Dashboard for Managing Products & Orders  
-✅ Image Upload for Products  
-✅ Responsive Design with Bootstrap  
-✅ Search & Filter Functionality  
-✅ Wishlist & Favorite Feature  
+| Category   | Technologies |
+|------------|------------------------------------------------|
+| **Frontend** | ![HTML5](https://img.shields.io/badge/HTML5-orange?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-blue?style=for-the-badge&logo=css3&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-yellow?style=for-the-badge&logo=javascript&logoColor=black) ![Bootstrap](https://img.shields.io/badge/Bootstrap-purple?style=for-the-badge&logo=bootstrap&logoColor=white) |
+| **Backend** | ![Python](https://img.shields.io/badge/Python-blue?style=for-the-badge&logo=python&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-black?style=for-the-badge&logo=flask&logoColor=white) |
+| **Database** | ![MySQL](https://img.shields.io/badge/MySQL-blue?style=for-the-badge&logo=mysql&logoColor=white) |
 
----
+&nbsp;
+## 🎥 Demo
+- Glowify User Walkthrough
 
-## 🛠 Tech Stack
+<table> <tr> <td width="65%"> <video src="https://github.com/user-attachments/assets/7c17a36d-0b19-40f3-ae1d-c4cad67590e4" controls width="100%"></video> </td> <td width="35%"> Glowify allows users to: - 🛍 Browse products by category. - 🔍 Search for beauty essentials. - 🛒 Add products to cart and checkout. - 💖 Save favorite items. - 👤 Manage user profiles and order history. - 🛠 Admin dashboard for product & order management. </td> </tr> </table>
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+- Admin Panel Demo
+<table> <tr> <td width="65%"> <video src="https://github.com/user-attachments/assets/7c17a36d-0b19-40f3-ae1d-c4cad67590e4" controls width="100%"></video> </td> <td width="35%"> Glowify allows users to: - 🛍 Browse products by category. - 🔍 Search for beauty essentials. - 🛒 Add products to cart and checkout. - 💖 Save favorite items. - 👤 Manage user profiles and order history. - 🛠 Admin dashboard for product & order management. </td> </tr> </table>
+&nbsp;
 
----
-
-## 🚀 Installation & Setup
-
-1️⃣ Clone this repository:
-```sh
- git clone https://github.com/your-username/glowify.git
-```
-2️⃣ Navigate to the project directory:
-```sh
- cd glowify
-```
-3️⃣ Create and activate a virtual environment:
-```sh
- python -m venv venv
- source venv/bin/activate   # For macOS/Linux
- venv\Scripts\activate      # For Windows
-```
-4️⃣ Install dependencies:
-```sh
- pip install -r requirements.txt
-```
-5️⃣ Set up the database (MySQL):
-- Create a new MySQL database `beautyproductsshopdb`.
-- Configure database connection in `config.py`.
-- Run migrations (if applicable).
-
-6️⃣ Start the application:
-```sh
- python app.py
-```
-7️⃣ Open the browser and visit: 
-```
- http://127.0.0.1:5000
-```
-
----
+*Note: The watermark in the video is from Clideo.com, as I used their free tool to compress the video.*
 
 ## 📸 Screenshots
 
@@ -90,20 +60,10 @@ Welcome to **Glowify** – a feature-rich shopping website for beauty products, 
 ### 🎮 Admin Dashboard
 ![Admin Dashboard](https://your-image-url.com/admin-dashboard.png)
 
----
+&nbsp;
 
-## 🤝 Contributing
+## 📞 Contact
 
-Contributions are welcome! If you'd like to improve **Glowify**, feel free to fork this repository, create a new branch, and submit a pull request.
-
----
-
-## 📫 Contact
-
-💼 **LinkedIn:** [Prajakta Kolhe](https://linkedin.com/in/prajakta-kolhe08)  
-📷 **Instagram:** [@prajaktakolhe89](https://instagram.com/prajaktakolhe89)  
-📩 **Email:** your-email@example.com  
-
----
+If you have any doubt or want to contribute feel free to email me or hit me up on [Linkedin](https://linkedin.com/in/prajakta-kolhe08).
 
 ⭐ **If you like this project, don't forget to give it a star!** ⭐
