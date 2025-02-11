@@ -1,0 +1,120 @@
+{% extends "master.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center"><b>Your Glowify Cart</b></h2>
+    {% if cart_items %}
+    <div class="row">
+        <!-- Cart Items Section -->
+        <div class="col-md-12">
+            {% for item in cart_items %}
+            <div class="cart-item card mb-4 p-3 shadow-sm">
+                <div class="row">
+                    <!-- Product Image -->
+                    <div class="col-md-3 text-center">
+                        <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.product_name }}" class="img-fluid cart-item-image">
+                    </div>
+
+                    <!-- Product Details -->
+                    <div class="col-md-6">
+                        <h5><strong>{{ item.product_name }}</strong></h5>
+                        <p class="text-muted">{{ item.description[:170]}}...</p>
+                        <h6 class="mb-3"><strong>Category:</strong> {{ item.category_name }}</h6>
+                        <h6 class="mb-2"><strong>Status:</strong> <span class="text-success">In Stock</span></h6>
+                        
+                        <!-- Dynamic Rating -->
+                        <div class="cart-item-ratings mb-2">
+                            {% for i in range(1, 6) %}
+                                {% if item.rating >= i %}
+                                    <span class="fas fa-star rating-checked"></span>
+                                {% elif item.rating >= i - 0.5 %}
+                                    <span class="fas fa-star-half-alt rating-checked"></span>
+                                {% else %}
+                                    <span class="fas fa-star rating-unchecked"></span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <p class="mb-1 cart-price"><strong>Price:</strong>₹ {{"%.2f"|format(item.price)}}</p>
+                    </div>
+
+                    <!-- Quantity and Action Buttons -->
+                    <div class="col-md-3 d-flex flex-column align-items-start">
+                        <!-- Quantity Controls -->
+                        <form action="{{ url_for('update_cart', cart_id=item.cart_id) }}" method="POST" class="d-flex align-items-center mb-3">
+                            <label for="quantity-{{ item.cart_id }}" class="me-2"><strong>Qty:</strong></label>
+                            <div class="input-group quantity-group">
+                                <button type="submit" name="change" value="-1" class="btn btn-outline-secondary btn-qty">-</button>
+                                <input type="text" id="quantity-{{item.cart_id}}" name="quantity" value="{{item.quantity}}" min="1" class="form-control text-center qty-input" readonly>
+                                <button type="submit" name="change" value="1" class="btn btn-outline-secondary btn-qty">+</button>
+                            </div>
+                        </form>
+                        <h6 class="mb-4"><strong>Total:</strong> ₹ {{"%.2f"|format(item.price * item.quantity)}}</h6>
+                        
+                        <!-- Action Buttons -->
+                        <a href="{{url_for('product_details', product_id=item.product_id)}}" class="btn btn-info btn-action mb-3">
+                            <i class="fas fa-info-circle"></i> View Product
+                        </a>
+                        <button class="btn btn-danger btn-action" data-bs-toggle="modal" data-bs-target="#removeModal{{ item.cart_id }}">
+                            <i class="fas fa-trash-alt"></i> Remove
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for Remove Confirmation -->
+            <div class="modal fade" id="removeModal{{ item.cart_id }}" tabindex="-1" aria-labelledby="removeModalLabel{{item.cart_id}}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="removeModalLabel{{item.cart_id}}">Remove Item from Cart?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to remove <strong>{{ item.product_name }}</strong> from your cart?
+                            <p class="text-muted mt-2">Add it to your wishlist to purchase later.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ url_for('remove_from_cart', cart_id=item.cart_id) }}" class="btn btn-danger">Remove</a>
+                            <a href="{{ url_for('add_to_wishlist', product_id=item.product_id) }}" class="btn btn-secondary">Add to Wishlist</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Cart Summary Section -->
+    <div class="row mt-4 mb-5">
+        <div class="col-md-12">
+            <div class="cart-summary card p-4 shadow-sm">
+                <h4 class="card-title mb-3">Price Details</h4>
+                <ul class="list-group list-group-flush mb-3">
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Cart MRP ({{ cart_items|length }} items)</span>
+                        <span>₹{{ "%.2f"|format(total_price) }}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Cart Discount</span>
+                        <span class="text-success">-₹30.00</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Platform Fee</span>
+                        <span>₹5.00</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        <strong>Total Amount</strong>
+                        <strong>₹{{"%.2f"|format(total_price - 30 + 5) }}</strong>
+                    </li>
+                </ul>
+                <div class="checkout-button-container">
+                    <a href="{{ url_for('proceed_to_checkout') }}" class="btn btn-success btn-checkout">Proceed to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>   
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+{% endblock %}

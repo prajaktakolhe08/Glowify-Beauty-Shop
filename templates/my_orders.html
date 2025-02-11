@@ -1,0 +1,59 @@
+{% extends "master.html" %}
+{% block content %}
+
+<div class="container my-5">
+    <h2 class="mb-4 text-center fw-bold">My Orders</h2>
+
+    {% if orders %}
+        <div class="accordion" id="ordersAccordion">
+            {% for order in orders %}
+                <div class="accordion-item mb-4 shadow-sm rounded">
+                    <h2 class="accordion-header" id="heading{{ order.order_id }}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ order.order_id }}" aria-expanded="false" aria-controls="collapse{{ order.order_id }}">
+                            <div class="d-flex w-100 justify-content-between">
+                                <span class="fw-bold">Order #{{ order.order_id }}</span>
+                                <span class="text-muted">{{ order.created_at.strftime('%B %d, %Y') }}</span>
+                                <span>Status: <strong>{{ order.order_status.capitalize() }}</strong></span>
+                                <span style="margin-right: 20px;">Total: ₹{{"%.2f"|format(order.total_amount)}}</span>
+                            </div
+                        </button>
+                    </h2>
+                    <div id="collapse{{ order.order_id }}" class="accordion-collapse collapse" aria-labelledby="heading{{order.order_id}}" data-bs-parent="#ordersAccordion">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <h5 class="fw-bold">Shipping Address</h5>
+                                    <p>{{order.shipping_address}}</p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <h5 class="fw-bold">Payment Details</h5>
+                                    <p><strong>Payment Method:</strong> {{ order.payemnt_method.capitalize() }}</p>
+                                    <p><strong>Payment Status:</strong> 
+                                        {% if order.payemnt_method.lower() == 'upi' %}
+                                            <span class="badge bg-success">Completed</span>
+                                        {% elif order.payemnt_method.lower() == 'cash on delivery' %}
+                                            <span class="badge bg-warning text-dark">Pending</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">{{ order.payemnt_status | title }}</span>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                            <hr class="my-4">
+                            <div class="text-center">
+                                <a href="{{ url_for('view_order', order_id=order.order_id) }}" class="btn btn-primary px-4">View Order Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="text-center">
+            <p class="lead">You have no orders yet.</p>
+            <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg mt-3">Start Shopping</a>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock %}

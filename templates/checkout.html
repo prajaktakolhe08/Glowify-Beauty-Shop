@@ -1,0 +1,100 @@
+{% extends "master.html" %}
+{% block content %}
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Checkout</h2>
+
+    <!-- Single Form Wrapping Your Details and Payment Details -->
+    <form action="{{ url_for('place_order') }}" method="POST">
+        <!-- Your Details Section -->
+        <div class="mb-4">
+            <h4 class="mb-3">Your Details</h4>
+            <div class="card p-4 shadow-sm border-0">
+                <div class="mb-3">
+                    <label for="full_name" class="form-label"><strong>Full Name</strong></label>
+                    <input type="text" class="form-control" id="full_name" name="full_name" value="{{ user.full_name }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label"><strong>Email</strong></label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="shipping_address" class="form-label"><strong>Shipping Address</strong></label>
+                    <textarea class="form-control" id="shipping_address" name="shipping_address" rows="4" required>{{ user.address }}</textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary Section -->
+        <div class="mt-4">
+            <h4 class="mb-3">Order Summary</h4>
+            <div class="card p-4 shadow-sm border-0">
+                {% if cart_items %}
+                    <ul class="list-group mb-3">
+                        {% for item in cart_items %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.product_name }}" class="img-thumbnail" style="width: 80px; height: 80px; object-fit: cover; margin-right: 15px;">
+                                    <div>
+                                        <h6 class="my-0">{{ item.product_name }} (x{{ item.quantity }})</h6>
+                                        <small class="text-muted">Category: {{ item.category_name }}</small>
+                                    </div>
+                                </div>
+                                <span class="text-muted fw-bold">₹{{ "%.2f"|format((item.price * item.quantity)|float) }}</span>
+                            </li>
+                        {% endfor %}
+                        <li class="list-group-item d-flex justify-content-between">
+                            <strong>Total Amount</strong>
+                            <strong>₹{{ "%.2f"|format(total_amount|float) }}</strong>
+                        </li>
+                    </ul>
+
+                    <!-- Price Details -->
+                    <h5 class="mt-4">Price Details</h5>
+                    <ul class="list-group list-group-flush mb-3">
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Cart MRP ({{ cart_items|length }} items)</span>
+                            <span>₹{{ "%.2f"|format(total_amount) }}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Cart Discount</span>
+                            <span class="text-success">-₹30.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Platform Fee</span>
+                            <span>₹5.00</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between fw-bold">
+                            <strong>Total Amount</strong>
+                            <strong>₹{{ "%.2f"|format(total_amount - 30 + 5) }}</strong>
+                        </li>
+                    </ul>
+                {% else %}
+                    <p class="text-center">No items in the cart to checkout.</p>
+                {% endif %}
+            </div>
+        </div>
+         <!-- Payment Details Section -->
+        <div class="mt-4">
+            <h4 class="mb-3">Payment Details</h4>
+            <div class="card p-4 shadow-sm border-0">
+                <div class="mb-3">
+                    <label for="payment_method" class="form-label"><strong>Select Payment Method:</strong></label>
+                    <select name="payment_method" id="payment_method" class="form-select" required>
+                        <option value="">-- Select Payment Method --</option>
+                        <option value="cash on delivery">Cash on Delivery</option>
+                        <option value="UPI">UPI</option>
+                    </select>
+                </div>
+                <!-- Hidden Inputs -->
+                <input type="hidden" name="total_amount" value="{{ total_amount }}">
+                <!-- Add any other hidden inputs if necessary -->
+
+                <button type="submit" class="btn btn-primary custom-orderbtn-width mx-auto d-block mt-3">Place Order</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
+

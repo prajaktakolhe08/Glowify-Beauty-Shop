@@ -1,0 +1,48 @@
+{% extends "master.html" %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 1200px;"> 
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card border-0 shadow-sm" style="min-height: 600px;"> 
+                <div class="card-header text-white" style="background-color: #152a2a;">
+                    <h4 class="text-center mb-0">Add Category</h4>
+                </div>
+                <div class="card-body p-5"> <!-- Added padding for spacing -->
+                    <form action="{{ url_for('add_category') }}" method="POST" enctype="multipart/form-data">
+                        <!-- Category Name -->
+                        <div class="mb-4">
+                            <label for="name" class="form-label">Category Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter category name" required>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="5" placeholder="Enter description"></textarea>
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="mb-4">
+                            <label for="image" class="form-label">Insert Image</label>
+                            <input type="file" class="form-control" id="image" name="imageurl" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn w-100 text-white py-2" style="background-color: #152a2a;">
+                            Add Category
+                        </button>
+                    </form>
+
+                    <!-- Back to Dashboard -->
+                    <div class="text-center mt-4">
+                        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-secondary">
+                            Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

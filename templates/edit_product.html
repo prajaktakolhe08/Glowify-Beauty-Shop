@@ -1,0 +1,83 @@
+{% extends "master.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>Edit Product</h2>
+    <form action="/admin/edit_product/{{product.product_id}}" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Product Name:</label>
+            <input type="text" name="name" id="name" value="{{product.name}}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" rows="5">{{product.description}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="number" name="price" id="price" value="{{product.price}}" required>
+        </div>
+        <div class="form-group">
+            <label for="stock">Stock:</label>
+            <input type="number" name="stock" id="stock" value="{{product.stock}}" required>
+        </div>
+        <div class="form-group">
+            <label for="category_id">Category:</label>
+            <select name="category_id" id="category_id" required>
+                <option value="">Select a Category</option>
+                {% for category in categories%}
+                <option value="{{category.category_id}}">{{category.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="image">Update Image:</label>
+            <input type="file" name="imageurl" id="image" value="{{product.image_url}}">
+        </div>
+        <div class="form-group">
+            <label for="rating">Rating (out of 5):</label>
+            <input type="number" class="form-control" id="rating" name="rating" step="0.1" min="0" max="5" value="{{product.rating}}" required>
+        </div>
+        <button type="submit" class="btn">Update Product</button>
+    </form>
+</div>
+<style>
+    body {
+        font-family: Arial;
+        background-color: #f0f0f0;
+    }
+    .container {
+        width: 50%;
+        margin: 50px auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        color: #152a2a;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        display: block;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        padding: 8px 0px;
+    }
+    .btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #152a2a;
+        font-weight: bold;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "master.html" %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="new-hero-section {{ category.name|lower }}-hero">
+    <div class="new-hero-image">
+        <div class="new-hero-text">
+            <h1>Explore {{ category.name }} Products</h1>
+            <p>Find the best deals and newest arrivals in {{ category.name }}.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Product Listing Section -->
+<section class="container mt-5">
+    <h2 class="text-center mb-5 new-category-heading">{{category.name}} Products</h2>
+    <div class="row mt-4">
+        {% for product in products %}
+        <div class="col-md-4 col-lg-3 mb-5">
+            <div class="card new-product-card mb-4">
+                <img src="{{ url_for('static', filename=product.image_url) }}" class="card-img-top new-product-image" alt="{{ product.name }}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{product.name[:26] }}..</h5>
+                    <p class="card-text">{{ product.description[:60] }}..</p>
+                    <h4 class="new-product-price">₹ {{product.price}}</h4>
+
+                    <!-- Dynamic Rating Display -->
+                    <div class="ratings mb-3">
+                        <span class="rating-number">{{product.rating}}</span>
+                        {% for i in range(1, 6) %}
+                            {% if product.rating >= i %}
+                                <span class="fas fa-star new-checked"></span>
+                            {% elif product.rating >= i - 0.5 %}
+                                <span class="fas fa-star-half-alt new-checked"></span>
+                            {% else %}
+                                <span class="fas fa-star new-unchecked"></span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <a href="{{ url_for('product_details', product_id=product.product_id) }}" class="btn new-btn new-btn-primary btn-block"><i class="fas fa-info-circle"></i> View Product</a>
+                    <a href="{{ url_for('add_to_cart', product_id=product.product_id) }}" class="btn new-btn new-btn-outline-secondary btn-block"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
+

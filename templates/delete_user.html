@@ -1,0 +1,57 @@
+{% extends "master.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4 text-center" style="color: #152a2a;">Delete User</h2>
+    <div class="alert alert-warning">
+        <p class="text-center">Are you sure you want to delete the following user?</p>
+        <ul class="list-unstyled text-center">
+            <li><strong>Full Name:</strong> {{ user.full_name }}</li>
+            <li><strong>Email:</strong> {{ user.email }}</li>
+            <li><strong>Address:</strong> {{ user.address }}</li>
+            <li><strong>City:</strong> {{ user.city }}</li>
+            <li><strong>Phone Number:</strong> {{ user.phone_number }}</li>
+        </ul>
+    </div>
+    <div class="text-center">
+        <form action="{{ url_for('delete_user', user_id=user.user_id) }}" method="POST" class="d-inline-block">
+            <button type="submit" name="action" value="Yes" class="btn btn-danger" style="background-color: #940905;">Yes, Delete</button>
+            
+        </form>
+        <button type="submit" name="action" value="No" class="btn btn-secondary d-inline-block"><a href="{{ url_for('view_users') }}">No, Cancel</a></button>
+    </div>
+</div>
+
+<style>
+    .alert {
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .alert-warning {
+        border-left: 5px solid #ffbd61;
+    }
+
+    h2 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+    }
+
+    .btn-danger:hover {
+        background-color: #c9302c;
+        border-color: #c9302c;
+    }
+
+    .btn-secondary {
+        margin-left: 10px;
+        font-size: 16px;
+      
+    }
+    .btn-secondary a{
+        text-decoration: none;
+        color: white;
+    }
+</style>
+{% endblock %}

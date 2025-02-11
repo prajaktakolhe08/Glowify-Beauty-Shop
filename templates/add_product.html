@@ -1,0 +1,79 @@
+{% extends "master.html" %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 1200px;"> 
+    <div class="row justify-content-center">
+        <div class="col-lg-10 col-md-12">
+            <div class="card border-0 shadow-sm" style="min-height: 600px;"> 
+                <div class="card-header text-white" style="background-color: #152a2a;">
+                    <h4 class="text-center mb-0">Add Product</h4>
+                </div>
+                <div class="card-body p-5"> <!-- Added padding for spacing -->
+                    <form action="{{ url_for('add_products') }}" method="POST" enctype="multipart/form-data">
+                        <!-- Product Name -->
+                        <div class="mb-4">
+                            <label for="name" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name" required>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" rows="5" placeholder="Enter product description"></textarea>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="mb-4">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="text" class="form-control" id="price" name="price" placeholder="Enter product price" required>
+                        </div>
+
+                        <!-- Stock -->
+                        <div class="mb-4">
+                            <label for="stock" class="form-label">Stock</label>
+                            <input type="number" class="form-control" id="stock" name="stock" placeholder="Enter stock quantity" required>
+                        </div>
+
+                        <!-- Category -->
+                        <div class="mb-4">
+                            <label for="category_id" class="form-label">Category</label>
+                            <select class="form-control" id="category_id" name="category_id" required>
+                                <option value="">Select a Category</option>
+                                {% for category in categories %}
+                                <option value="{{ category.category_id }}">{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="mb-4">
+                            <label for="image" class="form-label">Insert Image</label>
+                            <input type="file" class="form-control" id="image" name="imageurl" required>
+                        </div>
+
+                        <!-- Rating -->
+                        <div class="mb-4">
+                            <label for="rating" class="form-label">Rating (out of 5)</label>
+                            <input type="number" class="form-control" id="rating" name="rating" step="0.1" min="0" max="5" required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn w-100 text-white py-2" style="background-color: #152a2a;">
+                            Add Product
+                        </button>
+                    </form>
+
+                    <!-- Back to Dashboard -->
+                    <div class="text-center mt-4">
+                        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-secondary">
+                            Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

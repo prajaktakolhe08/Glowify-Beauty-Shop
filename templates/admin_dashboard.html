@@ -1,0 +1,250 @@
+{% extends "master.html" %}
+
+{% block title %}
+    <title>Admin Dashboard - Glowify</title>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="row">
+        <!-- Sidebar Navigation -->
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <div class="position-sticky pt-3">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ url_for('admin_dashboard') }}">
+                            <i class="fa-solid fa-gauge"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('add_category') }}">
+                            <i class="fa-solid fa-list"></i>
+                            Add Categories
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('add_products') }}">
+                            <i class="fa-solid fa-boxes-stacked"></i>
+                            Add Products
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('view_users') }}">
+                            <i class="fa-solid fa-users"></i>
+                            Users
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_view_orders') }}">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                            Orders
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 text-center">
+        <!-- Dashboard Header -->
+        <div class="pt-3 pb-2 mb-3 border-bottom text-center">
+            <h1 class="h2 fw-bold">Admin Dashboard</h1>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="row">
+            <!-- Products Card -->
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-primary h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa-solid fa-boxes-stacked fa-3x"></i>
+                        </div>
+                        <h5 class="card-title">Products</h5>
+                        <p class="card-text display-4">{{ total_products }}</p>
+                    </div>
+                    <a href="{{ url_for('view_products') }}" class="card-footer text-white clearfix small z-1">
+                        <span class="float-left">View Products</span>
+                        <span class="float-right">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Categories Card -->
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-success h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa-solid fa-list fa-3x"></i>
+                        </div>
+                        <h5 class="card-title">Categories</h5>
+                        <p class="card-text display-4">{{ total_categories }}</p>
+                    </div>
+                    <a href="{{ url_for('view_categories') }}" class="card-footer text-white clearfix small z-1">
+                        <span class="float-left">View Categories</span>
+                        <span class="float-right">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Users Card -->
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-warning h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa-solid fa-users fa-3x"></i>
+                        </div>
+                        <h5 class="card-title">Users</h5>
+                        <p class="card-text display-4">{{ total_users }}</p>
+                    </div>
+                    <a href="{{ url_for('view_users') }}" class="card-footer text-white clearfix small z-1">
+                        <span class="float-left">View Users</span>
+                        <span class="float-right">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Orders Card -->
+            <div class="col-md-3 mb-4">
+                <div class="card text-white bg-danger h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="card-body-icon">
+                            <i class="fa-solid fa-clipboard-list fa-3x"></i>
+                        </div>
+                        <h5 class="card-title">Orders</h5>
+                        <p class="card-text display-4">{{ total_orders }}</p>
+                    </div>
+                    <a href="{{ url_for('admin_view_orders') }}" class="card-footer text-white clearfix small z-1">
+                        <span class="float-left">View Orders</span>
+                        <span class="float-right">
+                            <i class="fa-solid fa-angle-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Activities -->
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white">
+                        <i class="fa-solid fa-clipboard-list"></i> Latest Orders
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>User</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in latest_orders %}
+                                    <tr>
+                                        <td>{{ order.order_id }}</td>
+                                        <td>{{ order.user_name }}</td>
+                                        <td>₹{{ "%.2f"|format(order.total_amount) }}</td>
+                                        <td>
+                                            <span class="badge
+                                        {% if order.order_status == 'pending' %}
+                                            bg-warning
+                                        {% elif order.order_status == 'shipped' %}
+                                            bg-info
+                                        {% elif order.order_status == 'delivered' %}
+                                            bg-success
+                                        {% elif order.order_status == 'canceled' %}
+                                            bg-danger
+                                        {% else %}
+                                            bg-secondary
+                                        {% endif %}
+                                    ">
+                                        {{ order.order_status.capitalize() }}
+                                    </span>
+                                        </td>
+                                        <td>{{ order.created_at.strftime('%B %d, %Y') }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="{{ url_for('admin_view_orders') }}" class="btn btn-outline-danger w-100 mt-3">View All Orders</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-dark text-white">
+                        <i class="fa-solid fa-users"></i> Latest Users
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Joined</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in latest_users %}
+                                    <tr>
+                                        <td>{{ user.user_id }}</td>
+                                        <td>{{ user.full_name }}</td>
+                                        <td>{{ user.email }}</td>
+                                        <td>{{ user.created_at.strftime('%B %d, %Y') }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        <a href="{{ url_for('view_users') }}" class="btn btn-outline-danger w-100 mt-3">View All Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .sidebar .nav-link {
+        color: #152a2a;
+        margin-bottom: 10px;
+    }
+    .sidebar .nav-link.active {
+        background-color: #152a2a;
+        color: white;
+    }
+    .card-body-icon {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        opacity: 0.2;
+        font-size: 4rem;
+    }
+
+    .card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        transition: transform 0.3s ease;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends "master.html" %}
+{% block content %}
+
+<div class="container my-5">
+    <div class="text-center mb-4">
+        <h2>Order Confirmation</h2>
+        <p class="lead">Thank you for your purchase! Your order has been placed successfully.</p>
+    </div>
+    
+    <div class="card shadow-lg p-4">
+        <!-- Order Details -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h5>Order Details</h5>
+                <p><strong>Order ID:</strong> <span class="text-muted">{{ order.order_id }}</span></p>
+                <p><strong>Order Date:</strong> <span class="text-muted">{{ order.created_at.strftime('%B %d, %Y') }}</span></p>
+                <p><strong>Order Status:</strong> <span class="badge bg-success">{{ order.order_status }}</span></p>
+            </div>
+            <div class="col-md-6">
+                <h5>Shipping Address</h5>
+                <p class="text-muted">{{ order.shipping_address }}</p>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <!-- Order Summary -->
+        <h5>Order Summary</h5>
+        <ul class="list-group mb-3">
+            {% for item in order_items %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.product_name }}" style="width: 75px; height: 75px; object-fit: cover;" class="me-3 rounded">
+                    <div>
+                        <h6 class="my-0">{{ item.product_name }}</h6>
+                        <small class="text-muted">Quantity: {{ item.quantity }}</small>
+                    </div>
+                </div>
+                <span class="text-muted">₹{{ "%.2f"|format(item.price * item.quantity) }}</span>
+            </li>
+            {% endfor %}
+            <li class="list-group-item d-flex justify-content-between">
+                <strong>Total</strong>
+                <strong>₹{{ "%.2f"|format(order.total_amount) }}</strong>
+            </li>
+        </ul>
+        
+        <!-- Price Details -->
+        <h5>Price Details</h5>
+        <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Cart MRP ({{ order_items|length }} items)</span>
+                <span>₹{{ "%.2f"|format(order.total_amount) }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Cart Discount</span>
+                <span class="text-success">-₹30.00</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <span>Platform Fee</span>
+                <span>₹5.00</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+                <strong>Total Amount</strong>
+                <strong>₹{{ "%.2f"|format(order.total_amount - 30 + 5) }}</strong>
+            </li>
+        </ul>
+        
+        <!-- Payment Details -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h5>Payment Details</h5>
+                <p><strong>Payment Method:</strong> <span class="text-muted">{{ order.payemnt_method}}</span></p>
+                <p><strong>Payment Status:</strong> 
+                    {% if order.payemnt_method.lower() == 'upi' %}
+                        <span class="badge bg-success">Completed</span>
+                    {% elif order.payemnt_method.lower() == 'cash on delivery' %}
+                        <span class="badge bg-warning text-dark">Pending</span>
+                    {% else %}
+                        <span class="badge bg-secondary">{{ order.payemnt_status | title }}</span>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <h5>Tracking</h5>
+                <p>view your order status <a href="{{ url_for('my_order') }}">here</a>.</p>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <!-- Action Buttons -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('home') }}" class="btn btn-primary me-2"><i class="bi bi-shop"></i> Continue Shopping</a>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+

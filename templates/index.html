@@ -1,0 +1,111 @@
+{%extends "master.html"%}
+{%block content%}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="hero-content text-black display1">
+                        <h1>Welcome to Glowify</h1>
+                        <h4>Discover the latest beauty products and trends</h4>
+                        <a href="#" class="btn btn-primary">Shop Now</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="hero-content text-black display2">
+                        <h1>Glow Like Never Before</h1>
+                        <h4>Find your perfect beauty product today</h4>
+                        <a href="#" class="btn btn-primary">Browse Products</a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="hero-content text-white display3">
+                        <h1>Elevate Your Style and Glow</h1>
+                        <h4>Redefine and Experience the Art of Beauty with Glowify</h4>
+                        <a href="#" class="btn btn-primary">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="container mt-5">
+        <h2 class="text-center heading1 mb-5">Shop by Categories</h2>
+        <div class="row">
+            <!-- Makeup Category -->
+            <div class="col-md-3 mb-4">
+                <div class="category-card text-center p-3 shadow-sm rounded">
+                    <a href="{{ url_for('product_listing', category_id=1015) }}">
+                    <div class="category-img mb-3" style="background-image: url('/static/others/makeup4.jpg');"></div>
+                    </a>
+                    <h3 class="category-title">Makeup</h3>
+                    <a href="{{ url_for('product_listing', category_id=1015) }}" class="btn explore-btn">Explore</a>
+                </div>
+            </div>
+
+            <!-- Skincare Category -->
+            <div class="col-md-3 mb-4">
+                <div class="category-card text-center p-3 shadow-sm rounded">
+                    <a href="{{ url_for('product_listing', category_id=1016) }}">
+                    <div class="category-img mb-3" style="background-image: url('/static/others/skincare1.jpg');"></div>
+                    </a>
+                    <h3 class="category-title">Skincare</h3>
+                    <a href="{{ url_for('product_listing', category_id=1016) }}" class="btn explore-btn">Explore</a>
+                </div>
+            </div>
+
+            <!-- Haircare Category -->
+            <div class="col-md-3 mb-4">
+                <div class="category-card text-center p-3 shadow-sm rounded">
+                    <a href="{{ url_for('product_listing', category_id=1016) }}">
+                    <div class="category-img mb-3" style="background-image: url('/static/others/haircare3.jpg');"></div>
+                    </a>
+                    <h3 class="category-title">Haircare</h3>
+                    <a href="{{ url_for('product_listing', category_id=1017) }}" class="btn explore-btn">Explore</a>
+                </div>
+            </div>
+
+            <!-- Fragrance Category -->
+            <div class="col-md-3 mb-4">
+                <div class="category-card text-center p-3 shadow-sm rounded">
+                    <a href="{{ url_for('product_listing', category_id=1018) }}">
+                    <div class="category-img mb-3" style="background-image: url('/static/others/fragrances2.jpg');"></div>
+                    </a>
+                    <h3 class="category-title">Fragrance</h3>
+                    <a href="{{ url_for('product_listing', category_id=1018) }}" class="btn explore-btn">Explore</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="container mt-5">
+        <h2 class="text-center heading1 mb-5">Featured Products</h2>
+        <div class="row">
+            {% for product in featured_products %}
+            <div class="col-md-4 mb-4">
+                <div class="product-card text-center p-3 shadow-sm rounded">
+                    <a href="{{ url_for('product_details', product_id=product.product_id) }}">
+                        <img src="{{ url_for('static', filename=product.image_url) }}" class="product-img mb-3" alt="{{ product.product_name }}">
+                    </a>
+                    <h4 class="product-title">{{ product.name[:27] }}..</h4>
+                    <p class="product-price mt-2">₹{{ product.price }}</p>
+                    <a href="{{url_for('add_to_cart',product_id=product.product_id)}}" class="btn btn-primary add-to-cart-btn mb-2">Add to Cart</a>
+                    <a href="{{ url_for('add_to_wishlist', product_id=product.product_id) }}" class="btn add-to-favorites-btn">
+                        <i class="fa-solid fa-heart"></i> Wishlist
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{%endblock%}

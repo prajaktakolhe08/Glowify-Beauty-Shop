@@ -1,0 +1,84 @@
+{% extends 'master.html' %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-3 mb-4 text-center fw-bold">Order Details</h2>
+    <div class="card mb-4 rounded">
+        <div class="card-header bg-dark text-white">
+            <strong>Order ID:</strong> {{ order.order_id }}
+        </div>
+        <div class="card-body">
+            <h5 class="fw-bold">User Information</h5>
+            <p><strong>Name:</strong> {{ order.full_name }}</p>
+            <p><strong>Email:</strong> {{ order.email }}</p>
+            <p><strong>Shipping Address:</strong> {{ order.shipping_address }}</p>
+
+            <h5 class="mt-4 fw-bold">Order Information</h5>
+            <p><strong>Total Amount:</strong> ₹{{ "%.2f"|format(order.total_amount) }}</p>
+            <p><strong>Order Status:</strong> 
+                <span class="badge 
+                    {% if order.order_status == 'pending' %} bg-warning
+                    {% elif order.order_status == 'shipped' %} bg-info
+                    {% elif order.order_status == 'delivered' %} bg-success
+                    {% elif order.order_status == 'canceled' %} bg-danger
+                    {% else %} bg-secondary
+                    {% endif %}
+                ">
+                    {{ order.order_status.capitalize() }}
+                </span>
+            </p>
+            <p><strong>Order Date:</strong> {{ order.created_at.strftime('%B %d, %Y') }}</p>
+
+            <h5 class="mt-4 fw-bold">Payment Information</h5>
+            <p><strong>Payment Method:</strong> {{ payment.payemnt_method.capitalize() }}</p>
+            <p><strong>Payment Status:</strong> 
+                <span class="badge 
+                    {% if payment.payment_status == 'pending' %} bg-warning
+                    {% elif payment.payment_status == 'completed' %} bg-success
+                    {% elif payment.payment_status == 'failed' %} bg-danger
+                    {% else %} bg-secondary
+                    {% endif %}
+                ">
+                    {{ payment.payment_status.capitalize() }}
+                </span>
+            </p>
+            <p><strong>Payment Date:</strong> {{ payment.payment_date.strftime('%B %d, %Y') }}</p>
+        </div>
+    </div>
+
+    <!-- Order Items Table -->
+    <h4 class="mb-3">Order Items</h4>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Image</th>
+                    <th>Quantity</th>
+                    <th>Price per Item</th>
+                    <th>Total Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order_items %}
+                <tr>
+                    <td>{{ item.product_id }}</td>
+                    <td>{{ item.product_name }}</td>
+                    <td>
+                        <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.product_name }}" class="img-thumbnail" style="width: 75px; height: 75px;">
+                    </td>
+                    <td>{{ item.quantity }}</td>
+                    <td>₹{{ "%.2f"|format(item.price) }}</td>
+                    <td>₹{{ "%.2f"|format(item.price * item.quantity) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-4">
+        <a href="{{ url_for('admin_view_orders') }}" class="btn btn-outline-primary rounded-pill px-4"><i class="fas fa-arrow-left"></i> Back to Orders</a>
+    </div>
+</div>
+{% endblock %}

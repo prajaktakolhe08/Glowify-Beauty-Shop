@@ -1,0 +1,93 @@
+{% extends "master.html" %}
+
+{% block content %}
+<div class="container mt-5 con-body">
+    <h2 class="mb-4 text-center" style="color: #152a2a">Manage Orders</h2>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Order ID</th>
+                    <th>User Name</th>
+                    <th>Total Amount</th>
+                    <th>Order Status</th>
+                    <th>Shipping Address</th>
+                    <th>Order Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.order_id }}</td>
+                    <td>{{ order.full_name }}</td>
+                    <td>₹{{"%.2f"|format(order.total_amount)}}</td>
+                    <td>
+                        <span class="badge
+                            {% if order.order_status == 'pending' %}
+                                bg-warning
+                            {% elif order.order_status == 'shipped' %}
+                                bg-info
+                            {% elif order.order_status == 'delivered' %}
+                                bg-success
+                            {% elif order.order_status == 'canceled' %}
+                                bg-danger
+                            {% else %}
+                                bg-secondary
+                            {% endif %}
+                        ">
+                            {{order.order_status.capitalize()}}
+                        </span>
+                    </td>
+                    <td>{{order.shipping_address}}</td>
+                    <td>{{order.created_at.strftime('%B %d, %Y')}}</td>
+                    <td>
+                        <a href="{{ url_for('order_details', order_id=order.order_id) }}" class="btn btn-sm btn-primary">View</a>
+                        <a href="{{ url_for('update_order_status', order_id=order.order_id) }}" class="btn btn-sm btn-secondary">Update Status</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    h2 {
+        font-weight: bold;
+    }
+
+    table th {
+        font-weight: 600;
+    }
+
+    .badge {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .table tr:hover {
+        background-color: #f0f0f5;
+    }
+
+    .btn-primary {
+        background-color: #152a2a;
+        border-color: #152a2a;
+    }
+
+    .btn-primary:hover {
+        background-color: #152a2a;
+        border-color: #152a2a;
+    }
+
+    .btn-secondary {
+        background-color: #152a2a;
+        border-color: #152a2a;
+    }
+
+    .btn-secondary:hover {
+        background-color: #152a2a;
+        border-color: #152a2a;
+    }
+</style>
+{% endblock %}

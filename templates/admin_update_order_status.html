@@ -1,0 +1,53 @@
+{% extends 'master.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+            <div class="card shadow-sm rounded">
+                <div class="card-body">
+                    <h2 class="mb-4 text-center fw-bold">Update Order Status</h2>
+                    <form action="{{ url_for('update_order_status', order_id=order_id) }}" method="POST">
+                        <div class="mb-3">
+                            <label for="current_status" class="form-label fw-bold">Current Status:</label>
+                            <span class="badge 
+                                {% if current_status == 'pending' %}
+                                    bg-warning
+                                {% elif current_status == 'shipped' %}
+                                    bg-info
+                                {% elif current_status == 'delivered' %}
+                                    bg-success
+                                {% elif current_status == 'canceled' %}
+                                    bg-danger
+                                {% else %}
+                                    bg-secondary
+                                {% endif %}
+                            ">
+                                {{ current_status.capitalize() }}
+                            </span>
+                        </div>
+                        
+                        <!-- New Status Selection -->
+                        <div class="mb-4">
+                            <label for="order_status" class="form-label fw-bold">Update to:</label>
+                            <select name="order_status" id="order_status" class="form-select" required>
+                                <option value="" disabled selected>-- Select New Status --</option>
+                                <option value="pending">Pending</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                                <option value="canceled">Canceled</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary px-4  fw-bold" style="background-color: #152a2a;">Update</button>
+                            <a href="{{ url_for('admin_view_orders') }}" class="btn btn-danger px-4 fw-bold" style="background-color: rgb(172, 10, 10);">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

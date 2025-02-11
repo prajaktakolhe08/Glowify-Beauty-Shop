@@ -1,0 +1,35 @@
+{% extends "master.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">  <!-- Reducing the width of the container -->
+            <div class="card shadow-sm p-4">
+                <h2 class="text-center mb-4">Manage Your Account</h2>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="full_name" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="full_name" name="full_name" value="{{ user.full_name }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" value="{{ user.address }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" class="form-control" id="city" name="city" value="{{ user.city }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone_number" class="form-label">Phone Number</label>
+                        <input type="text" class="form-control" id="phone_number" name="phone_number" value="{{ user.phone_number }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-75 mx-auto d-block profile-updatebtn">Update Profile</button>
+                </form>
+                <form method="POST" action="{{url_for('logout')}}" class="mt-4">
+                    <a href="{{ url_for('logout') }}" class="btn btn-danger w-75 mx-auto d-block profile-logoutbtn">Logout</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

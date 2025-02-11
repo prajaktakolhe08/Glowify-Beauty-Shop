@@ -1,0 +1,27 @@
+{% extends "master.html" %}
+{% block content %}
+<body>
+    <div class="container login-container mt-5">
+        <h2 class="text-center heading1">Welcome Back to Glowify</h2>
+        <p class="text-center">Sign in to access the latest beauty products and trends</p>
+
+        <form method="POST" action="{{url_for('login')}}" class="login-form mt-4">
+            <div class="mb-4">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
+            </div>
+            <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                <label class="form-check-label" for="remember">Remember Me</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 glow-btn">Sign in</button>
+
+            <p class="text-center mt-3">Don't have an account? <a href="{{url_for('register')}}" class="btn btn-link">Register</a></p>
+        </form>
+    </div>
+</body>
+{% endblock %}

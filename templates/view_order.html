@@ -1,0 +1,89 @@
+{% extends "master.html" %}
+{% block content %}
+
+<div class="container my-5">
+    <h2 class="mb-4 text-center fw-bold">Order #{{ order.order_id }} Details</h2>
+
+    <!-- Order and Shipping Information -->
+    <div class="card shadow-sm p-4 mb-4 rounded">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <h5 class="fw-bold"><i class="fas fa-box"></i> Order Details</h5>
+                <p class="mt-3"><strong>Order Date:</strong> {{ order.created_at.strftime('%B %d, %Y') }}</p>
+                <p><strong>Order Status:</strong> 
+                    <span class="badge 
+                        {% if order.order_status.lower() == 'delivered' %}
+                            bg-success
+                        {% elif order.order_status.lower() == 'cancelled' %}
+                            bg-danger
+                        {% elif order.order_status.lower() == 'shipped' %}
+                            bg-info    
+                        {% else %}
+                            bg-warning text-dark
+                        {% endif %}">{{ order.order_status.capitalize() }}</span>
+                </p>
+            </div>
+            <div class="col-md-6 mb-4">
+                <h5 class="fw-bold"><i class="fas fa-map-marker-alt"></i> Shipping Address</h5>
+                <p class="mt-2">{{ order.shipping_address }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Information -->
+    <div class="card shadow-sm p-4 mb-4 rounded">
+        <h5 class="fw-bold"><i class="fas fa-credit-card"></i> Payment Details</h5>
+        <p class="mt-2"><strong>Payment Method:</strong> {{ order.payemnt_method.capitalize() }}</p>
+        <p><strong>Payment Status:</strong> 
+            {% if order.payemnt_method.lower() == 'upi' %}
+                <span class="badge bg-success">Completed</span>
+            {% elif order.payemnt_method.lower() == 'cash on delivery' %}
+                <span class="badge bg-warning text-dark">Pending</span>
+            {% else %}
+                <span class="badge bg-secondary">{{ order.payemnt_status | title }}</span>
+            {% endif %}
+        </p>
+    </div>
+
+    <!-- Order Items -->
+    <div class="card shadow-sm p-4 mb-4 rounded">
+        <h5 class="fw-bold"><i class="fas fa-shopping-cart"></i> Order Items</h5>
+        <table class="table table-hover mt-2">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price (₹)</th>
+                    <th scope="col">Total (₹)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order_items %}
+                <tr>
+                    <td>
+                        <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.product_name }}" style="width: 75px; height: 75px; object-fit: cover;">
+                    </td>
+                    <td>{{ item.product_name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>₹{{ "%.2f"|format(item.price) }}</td>
+                    <td>₹{{ "%.2f"|format(item.price * item.quantity) }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="4" class="text-end"><strong>Total Amount:</strong></td>
+                    <td><strong>₹{{ "%.2f"|format(order.total_amount) }}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-4">
+        <a href="{{ url_for('my_order') }}" class="btn btn-lg btn-outline-primary rounded-pill px-4"><i class="fas fa-arrow-left"></i> Back to My Orders</a>
+    </div>
+</div>
+
+{% endblock %}
+
+
