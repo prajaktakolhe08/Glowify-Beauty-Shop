@@ -5,22 +5,22 @@ Glowify is designed to provide an easy and seamless shopping experience for beau
 ## ✨ Features  
 
 📌 **User Experience:**  
-- 👤 **User Authentication** (Sign Up, Login, Profile Management)  
-- 🏷️ **Product Categories** (Makeup, Skincare, Haircare, Fragrances, etc.)  
-- 🛍️ **Product Listing & Detailed Pages**  
-- ❤️ **Wishlist & Favorite Feature**   
+- 👤 User Authentication (Sign Up, Login, Profile Management)  
+- 🏷️ Product Categories (Makeup, Skincare, Haircare, Fragrances, etc.)  
+- 🛍️ Product Listing & Detailed Pages
+- ❤️ Wishlist & Favorite Feature   
 
 📌 **Shopping & Orders:**  
-- 🛒 **Shopping Cart & Checkout Process**  
-- 📦 **Order Management & Tracking**  
+- 🛒 Shopping Cart & Checkout Process 
+- 📦 Order Management & Tracking 
 
 📌 **Admin Panel:**  
-- 📊 **Admin Dashboard for Managing Products & Orders**  
-- 🖼️ **Categories and User Management**  
+- 📊 Admin Dashboard for Managing Products & Orders
+- 🖼️ Categories and User Management 
 
 📌 **Technology & Design:**  
-- 🎨 **Responsive Design with Bootstrap**  
-- ⚡ **Optimized & Fast Performance**   
+- 🎨 Responsive Design with Bootstrap 
+- ⚡ Optimized & Fast Performance 
 
 ## 🛠️ Built With
 <br>
